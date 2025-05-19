@@ -1,6 +1,7 @@
 package com.cts.wealthmanagementsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,14 @@ public class FinancialAdvisorServiceImplementation implements FinancialAdvisorSe
 	
 		return financialAdvisorRepository.save(financialAdvisor);
 	}
+
+	public Optional<FinancialAdvisor> getFinancialAdvisorByEmail(String email) {
+	    return financialAdvisorRepository.findByEmailAddress(email);
+	}
+	public Optional<FinancialAdvisor> validateLogin(String emailAddress, String passWord) {
+	    return financialAdvisorRepository.findByEmailAddressAndPassWord(emailAddress, passWord);
+	}
+
+
 
 }
