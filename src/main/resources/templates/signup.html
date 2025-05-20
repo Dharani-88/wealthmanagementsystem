@@ -56,11 +56,11 @@
         </a>
         <div class="collapse navbar-collapse justify-content-center">
             <ul class="navbar-nav gap-3">
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Onboard</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Planning</a></li>
+                 <li class="nav-item"><a class="nav-link fw-semibold" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Invest</a></li>
                 <li class="nav-item"><a class="nav-link fw-semibold" href="#">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Report</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Compliance</a></li>
+                 <li class="nav-item"><a class="nav-link fw-semibold" href="#">Help & Support</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Resources</a></li>
             </ul>
         </div>
         <div class="d-flex">
@@ -74,34 +74,49 @@
     <div class="signup-container w-100">
         <div class="card p-4">
             <h3 class="text-center mb-4 fw-bold">Create Your Account</h3>
-            <form th:action="@{/saveEmployee}" method="post">
-                <div class="mb-3">
-                    
-                 <label  for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="emailAddress" required>
-                    <label for="fullname" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="fullname" name="fullName" required>
-                   
-                </div>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="userName" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="passWord" required>
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-custom btn-lg" >Sign Up</button>
-                </div>
-                <div class="text-center mt-3">
-                    <small>Already have an account? <a th:href="@{/login}">Login</a></small>
-                </div>
-                <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-                <p th:text="${errorMessage}"></p>
-</div>
-                
-            </form>
+           <form th:action="@{/saveEmployee}" method="post">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+
+        <label for="fullname" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullname" name="name" required>
+    </div>
+
+    
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control" id="address" name="address" rows="2" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+    </div>
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-custom btn-lg">Sign Up</button>
+    </div>
+
+    <div class="text-center mt-3">
+        <small>Already have an account? <a th:href="@{/login}">Login</a></small>
+    </div>
+
+   :text="${errorMessage}"></p>
+    </div>
+</form>
+
         </div>
     </div>
 </div>

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cts.wealthmanagementsystem.entity.FinancialAdvisor;
-import com.cts.wealthmanagementsystem.service.FinancialAdvisorService;
+import com.cts.wealthmanagementsystem.entity.Client;
+import com.cts.wealthmanagementsystem.service.ClientService;
 
 
 import jakarta.servlet.http.HttpSession;
@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 	@Autowired 
-	private FinancialAdvisorService financialAdvisorService;
+	private ClientService clientService;
 	
 	@GetMapping("/")
 	public String home() {
@@ -32,36 +32,40 @@ public class HomeController {
 	}
 	@GetMapping("/signup")
 	public String signUpPage(Model model) {
-		FinancialAdvisor financialAdvisor=new FinancialAdvisor();
-		model.addAttribute("financialAdvisor", financialAdvisor);
+		Client client=new Client();
+		model.addAttribute("client", client);
 		return "signup";
 	}
 	
 	
 	@PostMapping("/saveEmployee")
-	public String saveEmployee(@ModelAttribute FinancialAdvisor financialAdvisor, Model model) {
+	public String saveEmployee(@ModelAttribute Client client, Model model) {
 	    // Check if a user with the same email already exists
-	    Optional<FinancialAdvisor> existingAdvisor = financialAdvisorService.getFinancialAdvisorByEmail(financialAdvisor.getEmailAddress());
+	    Optional<Client> getClient = clientService.getClientByEmail(client.getEmail());
 
-	    if (existingAdvisor.isPresent()) {
+	    if (getClient.isPresent()) {
 	        model.addAttribute("errorMessage", "A user with this email already exists.");
 	        return "signup"; // return to signup page with error
 	    }
-	    financialAdvisorService.addFinancialAdvisor(financialAdvisor);
+	    clientService.addClient(client);
 	    return "home";
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestParam String emailAddress,
-	                    @RequestParam String passWord,
+	public String login(@RequestParam String email,
+	                    @RequestParam String password,
 	                    Model model,
 	                    HttpSession session) {
+		if(email.equals("admin@123") && password.equals("AdminLogin123")) {
+    		return "Admin";
+    	}
+	    Optional<Client> client = clientService.validateLogin(email,password);
 
-	    Optional<FinancialAdvisor> advisor = financialAdvisorService.validateLogin(emailAddress, passWord);
-
-	    if (advisor.isPresent()) {
-	        session.setAttribute("loggedInUser", advisor.get());
+	    if (client.isPresent()) {
+	    
+	        session.setAttribute("loggedInUser", client.get());
 	        return "main"; 
+	   
 	    } else {
 	        model.addAttribute("errorMessage", "Invalid username or password.");
 	        return "login"; 

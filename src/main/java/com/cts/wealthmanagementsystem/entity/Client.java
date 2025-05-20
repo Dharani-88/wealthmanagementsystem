@@ -1,5 +1,7 @@
 package com.cts.wealthmanagementsystem.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,17 +10,19 @@ import lombok.Data;
 
 @Entity
 @Data
-public class FinancialAdvisor {
+public class Client {
 	   
-	   private String fullName;
-	  
-	    private String emailAddress;
+	 
 	    @Id
 	    @GeneratedValue(strategy=GenerationType.AUTO)
-	    private Integer identity;
-	
-       private String userName;
-       private String passWord;
+	    private Integer id;
+	    private String name;
+        private String email;
+        private String password;
+        private Integer phoneNumber;
+        private String address;
+        private LocalDate dateOfBirth;
+        
        
        
        
