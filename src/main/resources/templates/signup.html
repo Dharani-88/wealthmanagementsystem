@@ -74,33 +74,43 @@
     <div class="signup-container w-100">
         <div class="card p-4">
             <h3 class="text-center mb-4 fw-bold">Create Your Account</h3>
-            <form th:action="@{/saveEmployee}" method="post">
+            <form th:action="@{/auth/signup/saveEmployee}" method="post">
                 <div class="mb-3">
-                    
-                 <label  for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="emailAddress" required>
                     <label for="fullname" class="form-label">Full Name</label>
                     <input type="text" class="form-control" id="fullname" name="fullName" required>
-                   
                 </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="emailAddress" required>
+                </div>
+                
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="userName" required>
                 </div>
+
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" name="dateOfBirth" required>
+                </div>
+
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="passWord" required>
                 </div>
+
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-custom btn-lg" >Sign Up</button>
+                    <button type="submit" class="btn btn-custom btn-lg">Sign Up</button>
                 </div>
+                
                 <div class="text-center mt-3">
                     <small>Already have an account? <a th:href="@{/login}">Login</a></small>
                 </div>
+
                 <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-                <p th:text="${errorMessage}"></p>
-</div>
-                
+                    <p th:text="${errorMessage}"></p>
+                </div>
             </form>
         </div>
     </div>
